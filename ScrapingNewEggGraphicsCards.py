@@ -14,8 +14,15 @@ page_soup = soup(page_html,"html.parser")
 #grabs each product
 containers = page_soup.findAll("div",{"class": "item-container"})
 
+fileName = "products.csv"
+f = open(fileName,"w")
+headers = "product_name"
+f.write(headers + "\n")
+
 for container in containers:
-	product_name = container.div.a.text
-	previous_price = container.div.div.ul.li.span.text
-	print("product_name: "+ product_name)
-	print("previous_price: "+ previous_price)
+    product_name = container.div.a.text
+    #previous_price = container.div.div.ul.li.span.text
+    print("product_name: "+ product_name)
+    f.write(product_name +"\n")
+
+f.close()
